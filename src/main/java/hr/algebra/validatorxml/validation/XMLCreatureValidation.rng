@@ -1,0 +1,47 @@
+<rng:grammar xmlns:rng="http://relaxng.org/ns/structure/1.0"
+             xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns=""
+             datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <rng:start combine="choice">
+        <rng:ref name="creatures"/>
+    </rng:start>
+    <rng:define name="creatures">
+        <rng:element name="creatures">
+
+
+            <rng:oneOrMore>
+                <rng:element name="creature">
+
+
+                    <rng:element name="creatureName">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="aboutCreature">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="groupType">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="diet">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="temperament">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="urlIcon">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="urlImage">
+                        <rng:data type="string"/>
+                    </rng:element>
+                    <rng:element name="audio">
+                        <rng:data type="string"/>
+                    </rng:element>
+
+
+                </rng:element>
+            </rng:oneOrMore>
+
+
+        </rng:element>
+    </rng:define>
+</rng:grammar>
