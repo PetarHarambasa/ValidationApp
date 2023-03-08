@@ -17,10 +17,11 @@ import static hr.algebra.validatorxml.controller.HomeController.getApiData;
 public class AuthenticationController {
     @Autowired
     private JwtUtil jwtUtil;
+    public static User user;
 
     @PostMapping("/login")
-    public RedirectView authenticateUser(@RequestParam String username, String password) throws IOException {
-        User user = new User();
+    public RedirectView authenticateUser(@RequestParam String username, String password){
+        user = new User();
         user.setUsername(username);
         user.setPassword(password);
         if (username.equals("admin") && password.equals("admin")) {

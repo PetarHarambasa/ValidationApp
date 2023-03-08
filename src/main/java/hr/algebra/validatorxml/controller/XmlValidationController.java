@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
-
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
@@ -32,7 +31,6 @@ public class XmlValidationController {
             return "validationPassed";
         } catch (IOException | JAXBException | SAXException e) {
             System.out.println(e.getMessage());
-            model.addAttribute("FailMassage", "Failed to save entity: " + e);
             model.addAttribute("ValidationTypeMassage", "XSD validation failed");
             return "validationFailed";
         }
@@ -46,9 +44,14 @@ public class XmlValidationController {
             model.addAttribute("SuccessMassage", "RNG validation successful");
             return "validationPassed";
         } catch (IOException | JAXBException | SAXException e) {
-            model.addAttribute("FailMassage", "Failed to save entity: " + e);
             model.addAttribute("ValidationTypeMassage", "RNG validation failed");
             return "validationFailed";
         }
+    }
+
+    @PostMapping("/soap")
+    public String executeQuerySOAP(@RequestParam("soapQuery") String inputQuery, Model model) {
+        model.addAttribute("ReturnResponse", inputQuery);
+        return "soapInterface";
     }
 }

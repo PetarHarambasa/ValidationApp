@@ -26,16 +26,16 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String extractUsername(String token) {
+    public static String extractUsername(String token) {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();
     }
 
-    public boolean validateToken(String token, User user) {
+    public static boolean validateToken(String token, User user) {
         String username = extractUsername(token);
         return username.equals(user.getUsername()) && !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token) {
+    private static boolean isTokenExpired(String token) {
         Date expirationDate = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getExpiration();
         return expirationDate.before(new Date());
     }

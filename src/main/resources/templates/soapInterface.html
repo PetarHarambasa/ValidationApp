@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Validation Failed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Validation App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Title</title>
 </head>
 <body>
-
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
@@ -32,8 +32,13 @@
 <div id="navbar"></div>
 
 <div class="container p-5" align="center">
-    <h4 th:text="${ValidationTypeMassage}"></h4>
-    <h4 th:text="Something went wrong, check XML file and try again!"></h4>
+    <form method="post" action="/soap">
+        <div class="input-group m-4">
+            <textarea class="form-control" rows="4" name="soupQuery"></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+    <h2 th:text="${ReturnResponse}"></h2>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -41,7 +46,6 @@
         crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="../assets/js/common.js"></script>
 
 </body>
