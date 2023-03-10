@@ -35,7 +35,7 @@ public class HomeController {
     @GetMapping(value = "/api/json", produces = "application/json")
     static public RedirectView getApiData(@RequestBody String JwtToken) {
         //Change every time you port forward mockoon data with ngrok
-        String url = "https://71e9-94-250-167-253.eu.ngrok.io/arkCreatures/json";
+        String url = "https://f672-141-138-26-185.eu.ngrok.io/arkCreatures/json";
         String redirectUrl = "/api/json?url=" + url;
         validateToken(JwtToken, user);
         System.out.println("JWT Token validated successful");
