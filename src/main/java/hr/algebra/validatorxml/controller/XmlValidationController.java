@@ -48,10 +48,4 @@ public class XmlValidationController {
             return "validationFailed";
         }
     }
-
-    @PostMapping("/soap")
-    public String executeQuerySOAP(@RequestParam("soapQuery") String inputQuery, Model model) {
-        model.addAttribute("ReturnResponse", inputQuery);
-        return "soapInterface";
-    }
 }
