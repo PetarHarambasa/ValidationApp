@@ -2,11 +2,10 @@ package hr.algebra.validatorxml.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
@@ -26,13 +25,12 @@ public class HomeController {
     public String getRNGValidationPage() {
         return "validateRNG";
     }
-
-    @GetMapping("/auth/login")
-    public String getLoginPage() {
-        return "login";
+    @GetMapping("/")
+    public String getHomePage() {
+        return "index";
     }
 
-    @GetMapping(value = "/api/json", produces = "application/json")
+    @GetMapping(value = "/api", produces = "application/json")
     static public RedirectView getApiData(@RequestBody String JwtToken) {
         //Change every time you port forward mockoon data with ngrok
         String url = "https://f672-141-138-26-185.eu.ngrok.io/arkCreatures/json";
@@ -42,11 +40,18 @@ public class HomeController {
         return new RedirectView(redirectUrl);
     }
 
-    @GetMapping(value = "/api/json")
+    @GetMapping(value = "/api")
     @ResponseBody
     public String getJson(@RequestParam("url") String url) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(new URL(url));
         return objectMapper.writeValueAsString(jsonNode);
+    }
+
+    @GetMapping("/cleanSession")
+    public String cleanSession(SessionStatus sessionStatus, HttpSession session) {
+        session.invalidate();
+        sessionStatus.setComplete();
+        return "redirect:/";
     }
 }

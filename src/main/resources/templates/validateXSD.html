@@ -22,6 +22,7 @@
                 <a class="nav-link" href="/auth/login">Api with data</a>
                 <a class="nav-link" href="/soap">SOAP</a>
                 <a class="nav-link" href="/dhmz">DHMZ</a>
+                <a class="nav-link" th:href="@{/cleanSession}">Logout</a>
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
 
 <div class="container p-5" align="center">
     <h3 class="p-2">XSD validator</h3>
-<form method="post" action="/validateXSD" enctype="multipart/form-data">
+<form method="post" th:action="@{/validateXSD}" enctype="multipart/form-data">
     <input type="file" name="xmlFile"><br>
     <input type="submit" value="Submit" class="btn btn-primary">
 </form>

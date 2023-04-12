@@ -31,7 +31,7 @@
 
 <div class="container p-5" align="center">
     <h3 class="p-2">RNG validator</h3>
-<form method="post" action="/validateRNG" enctype="multipart/form-data">
+<form method="post" th:action="@{/validateRNG}" enctype="multipart/form-data">
     <input type="file" name="xmlFile"><br>
     <input type="submit" value="Submit" class="btn btn-primary">
 </form>
